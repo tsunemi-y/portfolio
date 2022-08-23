@@ -1,16 +1,8 @@
 import express, { Application, Request, Response } from 'express'
+import * as reservationController from './src/presentation/controller/reservationController'
+import app from './src/presentation/routes'
 
-const app: Application = express()
 const PORT = 8080
-
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-
-app.get('/', async (_req: Request, res: Response) => {
-  return res.status(200).send({
-    message: 'Hello Worlda!',
-  })
-})
 
 try {
   app.listen(PORT, () => {
