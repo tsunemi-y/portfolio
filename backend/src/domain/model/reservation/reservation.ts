@@ -11,11 +11,7 @@ export class Reservation {
     return new Reservation()
   }
 
-  static of(
-    _reservationDate: ReservationDate,
-    _reservationTime: ReservationTime,
-    _endTime: ReservationEndTime,
-  ) {
+  static of(_reservationDate: ReservationDate, _reservationTime: ReservationTime, _endTime: ReservationEndTime) {
     const reservation = new Reservation();
     reservation._reservationDate = _reservationDate;
     reservation._reservationTime = _reservationTime;

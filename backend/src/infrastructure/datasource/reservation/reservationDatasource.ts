@@ -1,14 +1,26 @@
+import pg from 'pg'
 import { ReservationRepository } from "../../../domain/model/reservation/reservationRepository"
 import { ReservationList } from "../../../domain/model/reservation/reservationList"
 import { Reservation } from "../../../domain/model/reservation/reservation"
 
 class ReservationDatasource implements ReservationRepository {
   
-  private dataMap: { [index: string]: Reservation } = {};
+  private dataMap: any = {};
 
   constructor() {
-    // database接続
-//    this.dataMap
+    const pool = new pg.Pool({
+      host: "localhost",
+      database: "root",
+      user: "root",
+      port: 5433,
+      password: "pass"
+    })    
+    const query = "SELECT * FROM reservations"
+    pool.connect()
+    .then(() => pool.query(query))
+    .then(results => {
+      this.dataMap = results.rows
+    })
   }
 
   findAll(): ReservationList {
