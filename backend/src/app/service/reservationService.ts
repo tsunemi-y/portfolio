@@ -11,16 +11,20 @@ class ReservationService {
     return reservationRepository.findAll();
   }
 
-  getAvailableDatetime(reservations: Reservation[], availableDatetimes: AvailableReservationDatetime[]) {
-		const results = reservations.filter(reservation  => {
-			console.log(reservation.reservation_date)
-			availableDatetimes.filter(availableDatetime =>{
-				// if (reservation.reservationDate() !== availableDatetime.availableReservationDatetimeDate()) return false;
-			})
-		})
-
-		// console.log(results)
-		return results
+  getFormattedAvailableDatetime(availableDatetimes: any[]) {
+		let result = []
+		let times = []
+		for (let i = 0; i < availableDatetimes.length; i++) {
+			let date = availableDatetimes[i].available_date
+			times.push(availableDatetimes[i].available_time)
+			let datetime = {
+				[date]: times
+			}
+			
+			result.push(datetime)
+		}
+		console.log(result)
+		
 	}
 
 }
