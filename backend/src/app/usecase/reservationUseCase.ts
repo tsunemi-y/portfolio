@@ -10,10 +10,9 @@ class ReservationUseCase {
      */
     getAvailableDatetime() {
         const tmpAvailableDatetime = AvailableReservationDatetimeService.findAll()
-        const tmpAvailableDatetimes = tmpAvailableDatetime.values();
-
-        const availableDatetime = ReservationService.getFormattedAvailableDatetime(tmpAvailableDatetimes)
-        return availableDatetime
+        const availableDatetimes = tmpAvailableDatetime.values();
+        // const availableDatetime = ReservationService.getFormattedAvailableDatetime(tmpAvailableDatetimes)
+        return availableDatetimes
 
         // 利用可能日時取得
     }

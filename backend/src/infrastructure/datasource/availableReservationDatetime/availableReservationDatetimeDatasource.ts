@@ -15,15 +15,19 @@ class AvailableReservationDatetimeDatasource implements AvailableReservationDate
       password: "pass"
     })    
     const query = `
-    SELECT * 
-    FROM available_reservation_datetimes ava_dt
-    WHERE NOT EXISTS (
-        SELECT 1 
-        FROM reservations r_dt
-        WHERE true 
+      SELECT 
+      ava_dt.available_date
+      ,array_agg(ava_dt.available_time) available_times
+      FROM available_reservation_datetimes ava_dt
+      WHERE NOT EXISTS (
+          SELECT 1 
+          FROM reservations r_dt
+          WHERE true 
           AND r_dt.reservation_date = ava_dt.available_date
           AND ava_dt.available_time BETWEEN r_dt.reservation_time AND r_dt.end_time
-    )`
+      )
+      GROUP BY ava_dt.available_date
+    `
     pool.connect()
     .then(() => pool.query(query))
     .then(results => {

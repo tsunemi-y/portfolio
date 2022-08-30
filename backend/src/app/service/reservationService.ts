@@ -11,21 +11,21 @@ class ReservationService {
     return reservationRepository.findAll();
   }
 
-  getFormattedAvailableDatetime(availableDatetimes: any[]) {
-		let result = []
-		let times = []
-		for (let i = 0; i < availableDatetimes.length; i++) {
-			let date = availableDatetimes[i].available_date
-			times.push(availableDatetimes[i].available_time)
-			let datetime = {
-				[date]: times
-			}
+  // getFormattedAvailableDatetime(availableDatetimes: any[]) {
+	// 	let result = []
+	// 	let times = []
+	// 	for (let i = 0; i < availableDatetimes.length; i++) {
+	// 		let date = availableDatetimes[i].available_date
+	// 		times = availableDatetimes[i].available_times
+	// 		let datetime = {
+	// 			[date]: times
+	// 		}
 			
-			result.push(datetime)
-		}
-		console.log(result)
+	// 		result.push(datetime)
+	// 	} 
+	// 	// console.log(result)
 		
-	}
+	// }
 
 }
 
