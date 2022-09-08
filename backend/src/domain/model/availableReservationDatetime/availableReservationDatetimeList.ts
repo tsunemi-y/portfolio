@@ -1,4 +1,4 @@
-import { AvailableReservationDatetime } from "./availableReservationDatetime";
+import { AvailableReservationDatetime } from "./availableReservationDatetime"
 
 export class AvailableReservationDatetimeList {
     private _values: AvailableReservationDatetime[]

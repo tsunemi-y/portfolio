@@ -1,3 +1,4 @@
+import { AvailableReservationDatetime } from "./availableReservationDatetime";
 import { AvailableReservationDatetimeList } from "./availableReservationDatetimeList"
 
 export interface AvailableReservationDatetimeRepository {
@@ -5,7 +6,7 @@ export interface AvailableReservationDatetimeRepository {
 
   // findBy(identifier: UserIdentifier): User;
 
-  // create(user: User): void;
+  create(availableReservationDatetime: AvailableReservationDatetime): void;
 
   // update(user: User): void;
 

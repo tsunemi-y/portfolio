@@ -8,6 +8,10 @@ class AvailableReservationDatetimeService {
     return availableReservationDatetimeRepository.findAll();
   }
 
+  create() {
+    availableReservationDatetimeRepository.create();
+  }
+
 }
 
 export default new AvailableReservationDatetimeService();
