@@ -1,4 +1,5 @@
-import availableReservationDatetimeRepository from "../../infrastructure/datasource/availableReservationDatetime/availableReservationDatetimeDatasource";
+import availableReservationDatetimeRepository from "../../infrastructure/datasource/availableReservationDatetime/availableReservationDatetimeDatasource"
+import { Reservation } from "../../domain/model/reservation/reservation"
 
 class AvailableReservationDatetimeService {
   constructor() {
@@ -8,8 +9,8 @@ class AvailableReservationDatetimeService {
     return availableReservationDatetimeRepository.findAll();
   }
 
-  create() {
-    availableReservationDatetimeRepository.create();
+  create(data: Reservation) {
+    availableReservationDatetimeRepository.create(data);
   }
 
 }

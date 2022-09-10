@@ -1,11 +1,12 @@
+import { Reservation } from "./reservation";
 import { ReservationList } from "./reservationList"
 
 export interface ReservationRepository {
-  findAll(): ReservationList;
+  // findAll(): ReservationList;
 
   // findBy(identifier: UserIdentifier): User;
 
-  // create(user: User): void;
+  create(data: Reservation): void;
 
   // update(user: User): void;
 

@@ -43,7 +43,7 @@ class AvailableReservationDatetimeDatasource implements AvailableReservationDate
   }
 
   // availableReservationDatetime: AvailableReservationDatetime
-  create(): void {
+  create(data): void {
     const query = `
       INSERT INTO reservations(user_id, reservation_date, reservation_time, end_time) VALUES(1, '2021/5/10', '11:00', '11:59')
     `

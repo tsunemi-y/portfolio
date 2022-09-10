@@ -7,25 +7,13 @@ class ReservationService {
   constructor() {
   }
 
-  findAll() {
-    return reservationRepository.findAll();
+  create(data: Reservation) {
+    return reservationRepository.create(data);
   }
 
-  // getFormattedAvailableDatetime(availableDatetimes: any[]) {
-	// 	let result = []
-	// 	let times = []
-	// 	for (let i = 0; i < availableDatetimes.length; i++) {
-	// 		let date = availableDatetimes[i].available_date
-	// 		times = availableDatetimes[i].available_times
-	// 		let datetime = {
-	// 			[date]: times
-	// 		}
-			
-	// 		result.push(datetime)
-	// 	} 
-	// 	// console.log(result)
-		
-	// }
+  getEndtime() {
+	//
+  }
 
 }
 
