@@ -1,3 +1,5 @@
+import passport from 'passport'
+import { Strategy as LocalStrategy } from 'passport-local';
 import app from './src/presentation/routes'
 
 const PORT = 8080

@@ -1,20 +1,36 @@
 import express, {Application} from "express";
 import cors from 'cors'
 import bodyParser from 'body-parser'
-import * as reservationController from "./controller/reservationController";
+import * as reservationController from "./controller/reservationController"
+import passport from "../config/passport";
 
 const app: Application = express()
 
 // todo: 特定のオリジンのみを許可
 app.use(cors())
 
+// ビューからPOSTされた値を受け取るために設定
 app.use(bodyParser.json())
 
-/**
- * Primary app routes.
- */
- app.get('/reservation', reservationController.index)
+// 認証
+app.use(passport.initialize());
+app.use(passport.session());
 
- app.post('/reservation', reservationController.create)
-// todo:ログイン機能実装
+app.post('/login', 
+    passport.authenticate('local', 
+        {
+            successRedirect: '/',
+            failureRedirect: '/login',
+            session: true
+        }
+    )
+)
+
+// ログイン機能
+app.get('/login', reservationController.index)
+
+app.get('/reservation', reservationController.index)
+
+app.post('/reservation', reservationController.create)
+
 export default app;

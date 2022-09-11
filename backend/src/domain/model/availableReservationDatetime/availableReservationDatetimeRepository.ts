@@ -6,8 +6,6 @@ export interface AvailableReservationDatetimeRepository {
 
   // findBy(identifier: UserIdentifier): User;
 
-  create(availableReservationDatetime: AvailableReservationDatetime): void;
-
   // update(user: User): void;
 
   // delete(identifier: UserIdentifier): void;

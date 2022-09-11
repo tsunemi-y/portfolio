@@ -9,10 +9,6 @@ class AvailableReservationDatetimeService {
     return availableReservationDatetimeRepository.findAll();
   }
 
-  create(data: Reservation) {
-    availableReservationDatetimeRepository.create(data);
-  }
-
 }
 
 export default new AvailableReservationDatetimeService();

@@ -42,15 +42,6 @@ class AvailableReservationDatetimeDatasource implements AvailableReservationDate
     return new AvailableReservationDatetimeList(Object.values(this.dataMap));
   }
 
-  // availableReservationDatetime: AvailableReservationDatetime
-  create(data): void {
-    const query = `
-      INSERT INTO reservations(user_id, reservation_date, reservation_time, end_time) VALUES(1, '2021/5/10', '11:00', '11:59')
-    `
-    this.pool.connect()
-    .then(() => this.pool.query(query))
-  }
-
 //   delete(identifier: UserIdentifier): void {
 //     delete this.dataMap[identifier.value()];
 //   }
