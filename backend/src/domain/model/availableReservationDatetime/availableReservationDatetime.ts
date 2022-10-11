@@ -3,9 +3,9 @@ import { AvailableReservationDatetimeTime } from './availableReservationDatetime
 import { AvailableReservationDatetimeFeeId } from './availableReservationDatetimeFeeId'
 
 export class AvailableReservationDatetime {
-  private _availableReservationDatetimeDate: AvailableReservationDatetimeDate
-  private _availableReservationDatetimeTime: AvailableReservationDatetimeTime
-  private _availableReservationDatetimeFeeId: AvailableReservationDatetimeFeeId
+  private _availableReservationDatetimeDate!: AvailableReservationDatetimeDate
+  private _availableReservationDatetimeTime!: AvailableReservationDatetimeTime
+  private _availableReservationDatetimeFeeId!: AvailableReservationDatetimeFeeId
 
   static newInstance() {
     return new AvailableReservationDatetime()

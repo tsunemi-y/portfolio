@@ -1,6 +1,6 @@
-import app from '../presentation/routes';
 import passport from 'passport'
 import { Strategy as LocalStrategy } from 'passport-local'
+import authenticationService from '../app/service/authenticationService'
 
 passport.use(new LocalStrategy({
     usernameField: 'email',
@@ -8,11 +8,11 @@ passport.use(new LocalStrategy({
     passReqToCallback: true,
     session: false,
   }, function (req, username, password, done) {
-    process.nextTick(function () {
-      if (username === "test" && password === "test") {
-        return done(null, username)
+    process.nextTick(async function () {
+        const user = await authenticationService.findForLogin(username, password)
+      if (user) {
+        return done(null, user)
       } else {
-        console.log("login error")
         return done(null, false, { message: 'パスワードが正しくありません。' })
       }
     })

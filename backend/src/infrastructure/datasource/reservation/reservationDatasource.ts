@@ -1,46 +1,24 @@
-import pg from 'pg'
+import db from '../../../config/db'
+import dayjs from '../../../config/dayjs'
 import { ReservationRepository } from "../../../domain/model/reservation/reservationRepository"
-import { ReservationList } from "../../../domain/model/reservation/reservationList"
-import { Reservation } from "../../../domain/model/reservation/reservation"
 
 class ReservationDatasource implements ReservationRepository {
-  
-  private dataMap: any = {}
-  private pool: pg.Pool
 
   constructor() {
-    this.pool = new pg.Pool({
-      host: "localhost",
-      database: "root",
-      user: "root",
-      port: 5433,
-      password: "pass"
-    })    
   }
 
-  // findAll(): ReservationList {
-  //   return new ReservationList(Object.values(this.dataMap));
-  // }
-
-//   findBy(identifier: UserIdentifier): User {
-//     return this.dataMap[identifier.value()];
-//   }
-
-  create(data: Reservation): void {
+  async create(data: any): Promise<void> {
+    const { userId, date, time, endTime } = data
+    const now = dayjs().tz().format()
     const query = `
-      INSERT INTO reservations(user_id, reservation_date, reservation_time, end_time) VALUES(1, '2021/5/10', '11:00', '11:59')
+      INSERT INTO reservations(user_id, reservation_date, reservation_time, end_time, created_at, updated_at) VALUES($1, $2, $3, $4, $5, $6)
     `
-    this.pool.connect()
-    .then(() => this.pool.query(query))
+    try {
+      await db.query(query, [userId, date, time, endTime, now, now])
+    } catch {
+      console.log('error')
+    }
   }
-
-//   update(user: User): void {
-//     this.dataMap[user.identifier().value()] = user;
-//   }
-
-//   delete(identifier: UserIdentifier): void {
-//     delete this.dataMap[identifier.value()];
-//   }
 }
 
 export default new ReservationDatasource();

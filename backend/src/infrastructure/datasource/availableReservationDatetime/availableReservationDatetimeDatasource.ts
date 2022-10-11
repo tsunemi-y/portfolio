@@ -1,24 +1,14 @@
-import pg from 'pg'
+import db from '../../../config/db'
 import { AvailableReservationDatetime } from "../../../domain/model/availableReservationDatetime/availableReservationDatetime"
 import { AvailableReservationDatetimeRepository } from "../../../domain/model/availableReservationDatetime/availableReservationDatetimeRepository"
 import { AvailableReservationDatetimeList } from "../../../domain/model/availableReservationDatetime/availableReservationDatetimeList"
 
 class AvailableReservationDatetimeDatasource implements AvailableReservationDatetimeRepository {
-  
-  private dataMap: any = {}
-  private pool: pg.Pool
 
   constructor() {
-    this.pool = new pg.Pool({
-      host: "localhost",
-      database: "root",
-      user: "root",
-      port: 5433,
-      password: "pass"
-    })    
   }
 
-  findAll(): AvailableReservationDatetimeList {
+  async findAll(): Promise<any> {
     const query = `
       SELECT 
       ava_dt.available_date
@@ -33,18 +23,11 @@ class AvailableReservationDatetimeDatasource implements AvailableReservationDate
       )
       GROUP BY ava_dt.available_date
     `
-    this.pool.connect()
-    .then(() => this.pool.query(query))
-    .then(results => {
-      this.dataMap = results.rows
-    })
+    const results = await db.query(query)
 
-    return new AvailableReservationDatetimeList(Object.values(this.dataMap));
+    return results.rows
   }
 
-//   delete(identifier: UserIdentifier): void {
-//     delete this.dataMap[identifier.value()];
-//   }
 }
 
 export default new AvailableReservationDatetimeDatasource();

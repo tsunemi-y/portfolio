@@ -5,7 +5,7 @@ class AvailableReservationDatetimeService {
   constructor() {
   }
 
-  findAll() {
+  findAll(): Promise<any> {
     return availableReservationDatetimeRepository.findAll();
   }
 

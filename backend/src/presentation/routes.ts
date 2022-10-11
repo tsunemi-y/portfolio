@@ -1,8 +1,12 @@
 import express, {Application} from "express";
 import cors from 'cors'
 import bodyParser from 'body-parser'
+import session from 'express-session'
+import jwt from 'jsonwebtoken'
+import jweConfig from '../config/jwt'
 import * as reservationController from "./controller/reservationController"
 import passport from "../config/passport";
+import authenticationService from "../app/service/authenticationService"
 
 const app: Application = express()
 
@@ -12,24 +16,26 @@ app.use(cors())
 // ビューからPOSTされた値を受け取るために設定
 app.use(bodyParser.json())
 
-// 認証
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(session({
+    secret: 'secret_key',
+    resave: false,
+    saveUninitialized: false
+}))
 
 app.post('/login', 
     passport.authenticate('local', 
         {
-            successRedirect: '/',
-            failureRedirect: '/login',
-            session: true
+            failureRedirect: '/'
         }
-    )
+    ),
+    function(req, res) {
+        const user: any = req.user
+        const token = jwt.sign(user, jweConfig.SECRET_KEY)
+        res.json({ token })
+    }
 )
 
-// ログイン機能
-app.get('/login', reservationController.index)
-
-app.get('/reservation', reservationController.index)
+app.get('/reservation', authenticationService.verifyToken, reservationController.index)
 
 app.post('/reservation', reservationController.create)
 

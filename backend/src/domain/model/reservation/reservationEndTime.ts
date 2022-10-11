@@ -1,7 +1,7 @@
 export class ReservationEndTime {
-  private _value: string;
+  private _value: number;
   
-  constructor(_value: string) {
+  constructor(_value: number) {
     this._value = _value;
   }
   
