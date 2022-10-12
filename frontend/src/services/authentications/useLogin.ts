@@ -8,7 +8,7 @@ export type UseLogin = {
 
 const useLogin = async (data: UseLogin) => {
 
-  const res = await axios.post('http://localhost:8080/login', data)
+  const res = await axios.post(`${process.env.BASE_URL}/login`, data)
   if (res.status === 200) {
     localStorage.setItem('token', res.data.token)
     window.location.href = '/'

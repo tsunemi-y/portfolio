@@ -6,7 +6,7 @@ export type AddAvailableDatetimeParams = {
 }
 
 const addAvailableDatetime = async (data: AddAvailableDatetimeParams) => {
-    await axios.post('http://localhost:8080/reservation', data, {
+    await axios.post(`${process.env.BASE_URL}/reservation`, data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }

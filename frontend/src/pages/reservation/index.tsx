@@ -13,7 +13,6 @@ import useAuth from '../../services/authentications/useAuth'
 import Loading from 'components/organisms/Loading'
 
 // todo
-// ・予約実施時、すでに予約した時間の再選択を不可に設定
 // ・○×のデザイン
 
 type TileContentProps = {
